@@ -1,6 +1,9 @@
 # Neflix GPT
     - Create react app
     - Configured Tailwind in my app
+    - Header
+    - Login form 
+    - Sign up form
 
 # Features 
     - Login/Signup page
