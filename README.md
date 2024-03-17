@@ -14,6 +14,9 @@
     - Created redux store with userSlice
     - Implemented sign our feature
     - Update profile api call
+    - Bugfix: Sign up user displayName and profilepic update
+    - Bugfix: If the user is not logginIn redirect /browse to login page and vice-versa
+     
 
 # Features 
     - Login/Signup page
