@@ -4,6 +4,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
+import { NETFLIX_LOGO } from "../utils/constants";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
         dispatch(
@@ -36,25 +37,24 @@ const Header = () => {
         navigate("/");
       }
     });
+
+    //unsubscribe when the component unmounts
+    return () => unsubscribe();
   }, []);
 
   return (
     <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
-      <img
-        className="w-64"
-        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
-        alt="logo"
-      />
+      <img className="w-64" src={NETFLIX_LOGO} alt="logo" />
       {user && (
         <div className="flex">
           <img
-            className=" h-12 mt-8 m-4 rounded-full"
+            className=" h-12 mt-6 m-4 rounded-full"
             src={user?.photoURL}
             alt="usericon"
           />
           <button
             onClick={handleSignOut}
-            className="w-20 h-12 mt-8 rounded-md bg-red-600 p-2 text-white font-semibold"
+            className="w-20 h-12 mt-6 mr-10 rounded-md bg-red-600 p-2 text-white font-semibold"
           >
             Sign out
           </button>
