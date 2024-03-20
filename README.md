@@ -34,8 +34,9 @@
     - Added TMDB image cdn url
     - Made the browse page amazing with Tailwind CSS 
     - usePopular Movies custom hook
-
-
+    - Movie Ai search feature
+    - Movie Ai search bar
+    - Multi language feature in our app
 
 # Features 
     - Login/Signup page

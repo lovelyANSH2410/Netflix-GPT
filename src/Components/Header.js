@@ -4,12 +4,15 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
-import { NETFLIX_LOGO } from "../utils/constants";
+import { NETFLIX_LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
+import { toggleGptSearchView } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const showGpt = useSelector((store) => store.gpt.showGptSearch);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -17,6 +20,15 @@ const Header = () => {
       .catch((error) => {
         navigate("/error");
       });
+  };
+
+  const handleGPTSearchClick = () => {
+    //Toggle my gpt search
+    dispatch(toggleGptSearchView());
+  };
+
+  const handleLanguageChange = (event) => {
+    dispatch(changeLanguage(event.target.value));
   };
 
   useEffect(() => {
@@ -47,6 +59,24 @@ const Header = () => {
       <img className="w-64" src={NETFLIX_LOGO} alt="logo" />
       {user && (
         <div className="flex">
+          {showGpt && (
+            <select
+              className="w-40 h-12 px-5 mt-6 mr-10 rounded-md bg-gray-900 opacity-80 font-semibold text-white"
+              onChange={handleLanguageChange}
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+          <button
+            className="w-30 h-12 px-5 mt-6 mr-10 text-white rounded-md bg-purple-500 p-2 font-bold bg-opacity-80"
+            onClick={handleGPTSearchClick}
+          >
+            {showGpt ? "Home" : "Movie Ai✨"}
+          </button>
           <img
             className=" h-12 mt-6 m-4 rounded-full"
             src={user?.photoURL}
