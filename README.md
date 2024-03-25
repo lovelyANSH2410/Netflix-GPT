@@ -37,6 +37,7 @@
     - Movie Ai search feature
     - Movie Ai search bar
     - Multi language feature in our app
+    - 
 
 # Features 
     - Login/Signup page
