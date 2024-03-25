@@ -15,7 +15,7 @@
     - Implemented sign our feature
     - Update profile api call
     - Bugfix: Sign up user displayName and profilepic update
-    - Bugfix: If the user is not logginIn redirect /browse to login page and vice-versa
+    - Bugfix: If the user is not logginIn redirect /browse to login page and  vice-versa
     - Unsubscribed to the onAuthStateChange callback
     - Added hardcoded values to the constants file
     - Register for tmdb api and create an app and get access token
@@ -37,7 +37,15 @@
     - Movie Ai search feature
     - Movie Ai search bar
     - Multi language feature in our app
-    - 
+    - Get GPT Search Open Ai API key 
+    - GPT Search Api call
+    - Fetched GPT movie suggestions from TMDB 
+    - Created gptSlice added data over there
+    - Reused MOvieList Component to make movie suggestion container
+    - Memoization
+    - Adding .env file 
+    - Adding .env to gitignore
+    - We made site responsive
 
 # Features 
     - Login/Signup page

@@ -49,19 +49,18 @@ const Header = () => {
         navigate("/");
       }
     });
-
     //unsubscribe when the component unmounts
     return () => unsubscribe();
   }, []);
 
   return (
-    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
-      <img className="w-64" src={NETFLIX_LOGO} alt="logo" />
+    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
+      <img className="w-64 mx-auto md:mx-0" src={NETFLIX_LOGO} alt="logo" />
       {user && (
-        <div className="flex">
+        <div className="flex justify-around">
           {showGpt && (
             <select
-              className="w-40 h-12 px-5 mt-6 mr-10 rounded-md bg-gray-900 opacity-80 font-semibold text-white"
+              className="w-40 h-12 px-5 mt-6 mr-5 rounded-md bg-gray-900 opacity-80 font-semibold text-white"
               onChange={handleLanguageChange}
             >
               {SUPPORTED_LANGUAGES.map((lang) => (
@@ -72,7 +71,7 @@ const Header = () => {
             </select>
           )}
           <button
-            className="w-30 h-12 px-5 mt-6 mr-10 text-white rounded-md bg-purple-500 p-2 font-bold bg-opacity-80"
+            className="w-30 h-12 px-5 mt-6  text-white rounded-md shadow-md bg-purple-800 p-2 font-bold"
             onClick={handleGPTSearchClick}
           >
             {showGpt ? "Home" : "Movie Ai✨"}
@@ -84,7 +83,7 @@ const Header = () => {
           />
           <button
             onClick={handleSignOut}
-            className="w-20 h-12 mt-6 mr-10 rounded-md bg-red-600 p-2 text-white font-semibold"
+            className="md:w-20 px-2 h-12 md:h-12 mt-6 mr-0 md:mr-10 rounded-md bg-red-600 text-white font-semibold"
           >
             Sign out
           </button>
